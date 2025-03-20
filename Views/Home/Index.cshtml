@@ -1,0 +1,23 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="container">
+    <h1>TODO List</h1>
+    <form asp-action="AddTask" method="post">
+        <input type="text" name="description" placeholder="Enter task" required />
+        <button type="submit">Add</button>
+    </form>
+    <ul>
+        @foreach (var task in Model)
+        {
+            <li>@task.Description
+                <form asp-action="DeleteTask" method="post" style="display:inline;">
+                    <input type="hidden" name="id" value="@task.Id" />
+                    <button type="submit">Delete</button>
+                </form>
+            </li>
+        }
+    </ul>
+
+</div>
